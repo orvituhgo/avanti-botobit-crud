@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Player {
+  id         String   @id @default(uuid())
+  name       String
+  age        Int
+  created_at DateTime @default(now())
+  id_team    String
+  team       Team     @relation(fields: [id_team], references: [id], onDelete: Cascade)
+
+  @@map("players")
+}
+
+model Team {
+  id             String           @id @default(uuid())
+  name           String           @unique
+  founded_at     DateTime         @default(now())
+  Player         Player[]
+  TeamTournament TeamTournament[]
+
+  @@map("teams")
+}
+
+model Tournament {
+  id             String           @id @default(uuid())
+  name           String           @unique
+  start_date     DateTime
+  end_date       DateTime
+  created_at     DateTime         @default(now())
+  TeamTournament TeamTournament[]
+
+  @@map("tournaments")
+}
+
+model TeamTournament {
+  id            String     @id @default(uuid())
+  id_team       String
+  team          Team       @relation(fields: [id_team], references: [id], onDelete: Cascade)
+  id_tournament String
+  tournament    Tournament @relation(fields: [id_tournament], references: [id], onDelete: Cascade)
+
+  @@map("teams_tournaments")
+}

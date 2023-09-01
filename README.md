@@ -1,7 +1,7 @@
 # _avanti-botobit-crud_
-![N|Solid](https://static.vecteezy.com/ti/vetor-gratis/t2/24211385-fofa-rosa-golfinho-peixe-desenho-animado-vetor.jpg)
+![boto-cor-de-rosa](https://s5.static.brasilescola.uol.com.br/be/2023/08/ilustracao-do-boto-cor-de-rosa-uma-das-lendas-da-regiao-norte-do-brasil.jpeg)
 
-#### Orientações para criar sua branch
+### Orientações para criar sua branch
 
 
 > Oi serumaninho, bora padronizar essas branches, mas antes clonemos o repo:
@@ -12,8 +12,8 @@
 
 - Segundo passo é clonar a branch: ```git checkout -b /users/local/orvituhgo``` (minha branch)
 
-##### Orientação para instalar os pacotes
+### Orientação para instalar os pacotes
 > não esquece de usar ```npm i``` ou ```yarn install``` se não nada funcionará
 
-##### Orientação para executar as migrations e criar o schema e as tables
+### Orientação para executar as migrations e criar o schema e as tables
 > executar ```npx prisma migrate dev``` ou ```prisma migrate dev```

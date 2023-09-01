@@ -1,5 +1,14 @@
 import { Request, Response } from "express"
 
+/*
+
+
+PRECISA DESSE SERÁ?
+
+
+
+*/
+
 export class TeamTournamentController {
   async createTeam (req : Request, res : Response) {
     try {

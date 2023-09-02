@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { PlayerRepository } from "../database/PlayerRepository"
 
 export class PlayerController {
   async createPlayer (req : Request, res : Response) {
@@ -13,7 +14,10 @@ export class PlayerController {
   async deletePlayer (req : Request, res : Response) {
     try {
       //code to delete
-      return res.status(200).json()
+      await new PlayerRepository().deletePlayerById(req.params.id)
+
+
+      return res.status(200).json("Player Deletado!")
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }
@@ -38,9 +42,12 @@ export class PlayerController {
   }
 
   async findAllPlayers (req : Request, res : Response) {
+    const playerRepository = new PlayerRepository() 
+    const players = await playerRepository.findAllPlayersRepository()
+
     try {
       //code to find all
-      return res.status(200).json()
+      return res.status(200).json(players)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

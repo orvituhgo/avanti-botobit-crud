@@ -15,5 +15,6 @@
 ### Orientação para instalar os pacotes
 > não esquece de usar ```npm i``` ou ```yarn install``` se não nada funcionará
 
+``
 ### Orientação para executar as migrations e criar o schema e as tables
-> executar ```npx prisma migrate dev``` ou ```prisma migrate dev```
+> executar ```npx prisma migrate dev``` ou ```prisma migrate dev`

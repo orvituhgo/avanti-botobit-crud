@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { prismaClient } from "../database/prismaClient";
 
 export class PlayerController {
   async createPlayer (req : Request, res : Response) {
@@ -39,8 +40,9 @@ export class PlayerController {
 
   async findAllPlayers (req : Request, res : Response) {
     try {
-      //code to find all
-      return res.status(200).json()
+      const players = await prismaClient.player.findMany();
+
+      return res.status(200).json(players)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

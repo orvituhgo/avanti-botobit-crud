@@ -39,7 +39,7 @@ model Tournament {
   created_at     DateTime         @default(now())
   TeamTournament TeamTournament[]
 
-  @@map("tournaments")
+  @@map("toutruernaments")
 }
 
 model TeamTournament {

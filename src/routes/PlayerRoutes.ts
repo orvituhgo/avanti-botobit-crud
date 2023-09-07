@@ -2,11 +2,12 @@ import { Router } from "express";
 import { PlayerController } from "../controllers/PlayerController";
 
 export const playerRoutes = Router()
+const playerController =  new PlayerController()
 
 const playerController = new PlayerController()
 
 // get all players (findAllPlayers)
-playerRoutes.get('/all', () => '')
+playerRoutes.get('/all', (req, res) => playerController.findAllPlayers(req, res))
 
 
 // get player by id (findPlayer)
@@ -22,4 +23,4 @@ playerRoutes.put('/:id', () => '')
 
 
 // delete a specific player by id (deletePlayer) 
-playerRoutes.delete('/:id', () => '')
+playerRoutes.delete('/:id', (req, res) => playerController.deletePlayer(req, res))

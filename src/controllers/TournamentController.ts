@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
-import { prismaClient } from "../database/prismaClient"
+import { prismaClient } from "../database/prismaClient";
+
 
 export class TournamentController {
   async createTournament (req : Request, res : Response) {
@@ -52,8 +53,9 @@ export class TournamentController {
 
   async findAllTournaments (req : Request, res : Response) {
     try {
-      //code to find all
-      return res.status(200).json()
+
+      const tournaments = await prismaClient.tournament.findMany();
+      return res.status(200).json(tournaments)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

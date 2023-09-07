@@ -2,11 +2,10 @@ import { Router } from "express";
 import { TeamController } from "../controllers/TeamController";
 
 export const teamRoutes = Router()
-
 const teamController = new TeamController()
 
 // get all teams (findAllTeams)
-teamRoutes.get('/all', () => '')
+teamRoutes.get('/all', (req, res) => teamController.findAllTeams(req, res))
 
 
 // get team by id (findTeam)
@@ -22,4 +21,4 @@ teamRoutes.put('/:id', () => '')
 
 
 // delete a specific team by id (deleteTeam) 
-teamRoutes.delete('/:id', () => '')
+teamRoutes.delete('/:id', (req, res) => teamController.deleteTeam(req, res))

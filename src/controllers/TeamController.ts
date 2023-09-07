@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
-import { prismaClient } from "../database/prismaClient"
+import { prismaClient } from "../database/prismaClient";
+
 
 export class TeamController {
   async createTeam (req : Request, res : Response) {
@@ -50,8 +51,9 @@ export class TeamController {
 
   async findAllTeams (req : Request, res : Response) {
     try {
-      //code to find all
-      return res.status(200).json()
+      const teams = await prismaClient.team.findMany();
+
+      return res.status(200).json(teams)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

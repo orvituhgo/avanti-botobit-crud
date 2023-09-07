@@ -1,11 +1,24 @@
 import { Request, Response } from "express"
 import { prismaClient } from "../database/prismaClient";
 
+
 export class TournamentController {
   async createTournament (req : Request, res : Response) {
     try {
-      //code to create
-      return res.status(201).json()
+      const { name, start_date, end_date } = req.body
+      
+      if (name && start_date && end_date) {
+        const tournament = await prismaClient.tournament.create({
+          data: {
+            name, 
+            start_date,
+            end_date
+          }
+        })
+        return res.status(201).json(tournament)
+      } else {
+        return res.status(400).json('Invalid data')
+      }
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

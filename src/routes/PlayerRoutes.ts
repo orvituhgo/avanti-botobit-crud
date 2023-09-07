@@ -4,6 +4,8 @@ import { PlayerController } from "../controllers/PlayerController";
 export const playerRoutes = Router()
 const playerController =  new PlayerController()
 
+const playerController = new PlayerController()
+
 // get all players (findAllPlayers)
 playerRoutes.get('/all', (req, res) => playerController.findAllPlayers(req, res))
 
@@ -13,7 +15,7 @@ playerRoutes.get('/:id', () => '')
 
 
 // post to register a new player in database (createPlayer) 
-playerRoutes.post('/', () => '')
+playerRoutes.post('/', playerController.createPlayer)
 
 
 // put a new data to update a specific player by id (updatePlayer) 

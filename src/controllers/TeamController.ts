@@ -1,11 +1,22 @@
 import { Request, Response } from "express"
 import { prismaClient } from "../database/prismaClient";
 
+
 export class TeamController {
   async createTeam (req : Request, res : Response) {
     try {
-      //code to create
-      return res.status(201).json()
+      const { name } = req.body
+
+      if (name) {
+        const team = await prismaClient.team.create({
+          data: {
+            name
+          }
+        })
+        return res.status(201).json(team)
+      } else {
+        return res.status(400).json('Invalid data')
+      }
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

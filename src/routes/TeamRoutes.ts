@@ -3,6 +3,7 @@ import { TeamController } from "../controllers/TeamController";
 
 export const teamRoutes = Router()
 const teamController = new TeamController()
+
 // get all teams (findAllTeams)
 teamRoutes.get('/all', (req, res) => teamController.findAllTeams(req, res))
 
@@ -12,7 +13,7 @@ teamRoutes.get('/:id', () => '')
 
 
 // post to register a new team in database (createTeam)
-teamRoutes.post('/', () => '')
+teamRoutes.post('/', teamController.createTeam)
 
 
 // put a new data to update a specific team by id (updateTeam) 

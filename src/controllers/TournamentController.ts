@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
-import { prismaClient } from "../database/prismaClient";
+import { Request, Response } from "express"
+import { TournamentRepository } from "../database/TournamentRepository"
+import { prismaClient } from "../database/prismaClient"
 
 export class TournamentController {
   async createTournament (req : Request, res : Response) {
@@ -26,7 +27,9 @@ export class TournamentController {
   async deleteTournament (req : Request, res : Response) {
     try {
       //code to delete
-      return res.status(200).json()
+      await new TournamentRepository().deleteTounamentById(req.params.id)
+      
+      return res.status(200).json("Tournament Deletado!")
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }
@@ -59,9 +62,10 @@ export class TournamentController {
   }
 
   async findAllTournaments (req : Request, res : Response) {
+    const tournaments = await new TournamentRepository().findAllTournamentsRepository()
     try {
-
       const tournaments = await prismaClient.tournament.findMany();
+      
       return res.status(200).json(tournaments)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})

@@ -1,5 +1,7 @@
 import { Request, Response } from "express"
-import { prismaClient } from "../database/prismaClient";
+import { TeamRepository } from "../database/TeamRepository"
+import { prismaClient } from "../database/prismaClient"
+
 
 export class TeamController {
   async createTeam (req : Request, res : Response) {
@@ -24,7 +26,9 @@ export class TeamController {
   async deleteTeam (req : Request, res : Response) {
     try {
       //code to delete
-      return res.status(200).json()
+      await new TeamRepository().deleteTeamById(req.params.id)
+      
+      return res.status(200).json("Team Deletado!")
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }
@@ -57,6 +61,8 @@ export class TeamController {
   }
 
   async findAllTeams (req : Request, res : Response) {
+    const teamRepository = new TeamRepository()
+    const teams = await teamRepository.findAllTeamsRepository()
     try {
       const teams = await prismaClient.team.findMany();
 

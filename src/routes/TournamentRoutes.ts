@@ -2,16 +2,15 @@ import { Router } from "express";
 import { TournamentController } from "../controllers/TournamentController";
 
 export const tournamentRoutes = Router()
-const tournamentController = new TournamentController;
+const tournaments = new TournamentController
 
-const tournaments = new TournamentController()
 
 // get all tournaments (findAllTournaments)
 tournamentRoutes.get('/all', (req, res) => tournaments.findAllTournaments(req, res))
 
 
 // get tournament by id (findTeam)
-tournamentRoutes.get('/:id', tournamentController.findTournament)
+tournamentRoutes.get('/:id', tournaments.findTournament)
 
 
 // post to register a new tournament in database (createTournaments)

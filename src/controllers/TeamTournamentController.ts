@@ -1,9 +1,11 @@
 import { Request, Response } from "express"
+import { prismaClient } from "../database/prismaClient";
+
 
 /*
 
 
-PRECISA DESSE SERÁ?
+PRECISA DESSE CONTROLLER SERÁ?
 
 
 
@@ -12,8 +14,19 @@ PRECISA DESSE SERÁ?
 export class TeamTournamentController {
   async createTeam (req : Request, res : Response) {
     try {
-      //code to create
-      return res.status(201).json()
+      const {id_team, id_tournament} = req.body
+
+      if (id_team && id_tournament) {
+        const teamTournament = await prismaClient.teamTournament.create({
+          data: {
+            id_team,
+            id_tournament
+          }
+        })
+        return res.status(201).json(teamTournament)
+      } else {
+        return res.status(400).json('Invalid data')
+      }
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }
@@ -48,8 +61,8 @@ export class TeamTournamentController {
 
   async findAllTeams (req : Request, res : Response) {
     try {
-      //code to find all
-      return res.status(200).json()
+      const teamTournaments = await prismaClient.teamTournament.findMany();
+      return res.status(200).json(teamTournaments)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

@@ -3,7 +3,7 @@ import express, { json } from "express";
 import { routes } from "./routes/routes";
 
 const app = express()
-const port = 4003
+const port = 4002
 
 app.use(json()) // ou express.json()
 app.use(routes)

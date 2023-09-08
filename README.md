@@ -1,6 +1,8 @@
 # _avanti-botobit-crud_
 ![boto-cor-de-rosa](https://s5.static.brasilescola.uol.com.br/be/2023/08/ilustracao-do-boto-cor-de-rosa-uma-das-lendas-da-regiao-norte-do-brasil.jpeg)
+![boto-cor-de-rosa](https://s5.static.brasilescola.uol.com.br/be/2023/08/ilustracao-do-boto-cor-de-rosa-uma-das-lendas-da-regiao-norte-do-brasil.jpeg)
 
+### Orientações para criar sua branch
 ### Orientações para criar sua branch
 
 
@@ -16,4 +18,5 @@
 > não esquece de usar ```npm i``` ou ```yarn install``` se não nada funcionará
 
 ### Orientação para executar as migrations e criar o schema e as tables
-> executar ```npx prisma migrate dev``` ou ```prisma migrate dev```
+> executar ```npx prisma migrate dev``` ou ```prisma migrate dev`
+

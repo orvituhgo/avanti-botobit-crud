@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { prismaClient } from "../database/prismaClient";
+import { prismaClient } from "../database/prismaClient"
 
 
 export class PlayerController {
@@ -44,8 +44,16 @@ export class PlayerController {
 
   async findPlayer (req : Request, res : Response) {
     try {
-      //code to find
-      return res.status(200).json()
+      const {id} = req.params
+      const player = await prismaClient.player.findFirst({
+        where: {
+          id
+      },      
+    })    
+    if (!player) {
+      return res.status(404).json({ err: 'Player not found!' });
+    }
+      return res.status(200).json(player)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

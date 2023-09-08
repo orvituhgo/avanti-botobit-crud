@@ -2,8 +2,6 @@ import { Router } from "express";
 import { PlayerController } from "../controllers/PlayerController";
 
 export const playerRoutes = Router()
-const playerController =  new PlayerController()
-
 const playerController = new PlayerController()
 
 // get all players (findAllPlayers)
@@ -11,7 +9,7 @@ playerRoutes.get('/all', (req, res) => playerController.findAllPlayers(req, res)
 
 
 // get player by id (findPlayer)
-playerRoutes.get('/:id', () => '')
+playerRoutes.get('/:id', playerController.findPlayer)
 
 
 // post to register a new player in database (createPlayer) 

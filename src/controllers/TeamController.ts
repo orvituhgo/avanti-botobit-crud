@@ -25,7 +25,6 @@ export class TeamController {
 
   async deleteTeam (req : Request, res : Response) {
     try {
-      //code to delete
       await new TeamRepository().deleteTeamById(req.params.id)
       
       return res.status(200).json("Team Deletado!")
@@ -36,8 +35,25 @@ export class TeamController {
 
   async updateTeam (req : Request, res : Response) {
     try {
-      //code to update
-      return res.status(200).json()
+      const {id} = req.params
+      const {name} = req.body
+
+      const teamExist = await prismaClient.team.findFirst({where:{id}})
+
+      if(!teamExist){
+        return res.status(400).json("This Team is not registered");
+      }
+
+      const teamUpdate = await prismaClient.team.update({
+        where : {
+          id
+        },
+        data : {
+          name
+        }
+      })
+
+      return res.status(200).json(teamUpdate)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }
@@ -59,6 +75,8 @@ export class TeamController {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }
   }
+
+  
 
   async findAllTeams (req : Request, res : Response) {
     const teamRepository = new TeamRepository()

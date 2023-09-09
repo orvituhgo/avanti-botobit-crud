@@ -18,7 +18,7 @@ teamRoutes.post('/', teamController.createTeam)
 
 
 // put a new data to update a specific team by id (updateTeam) 
-teamRoutes.put('/:id', () => '')
+teamRoutes.put('/:id', teamController.updateTeam )
 
 
 // delete a specific team by id (deleteTeam) 

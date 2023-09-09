@@ -18,7 +18,7 @@ tournamentRoutes.post('/', tournaments.createTournament)
 
 
 // put a new data to update a specific tournament by id (updateTournaments) 
-tournamentRoutes.put('/:id', () => '')
+tournamentRoutes.put('/:id', tournaments.updateTournament)
 
 
 // delete a specific tournament by id (deleteTournaments) 

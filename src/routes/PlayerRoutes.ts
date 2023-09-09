@@ -18,7 +18,7 @@ playerRoutes.post('/', playerController.createPlayer)
 
 
 // put a new data to update a specific player by id (updatePlayer) 
-playerRoutes.put('/:id', () => '')
+playerRoutes.put('/:id', playerController.updatePlayer )
 
 
 // delete a specific player by id (deletePlayer) 

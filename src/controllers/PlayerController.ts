@@ -39,8 +39,30 @@ export class PlayerController {
 
   async updatePlayer (req : Request, res : Response) {
     try {
-      //code to update
-      return res.status(200).json()
+      const { id } = req.params
+      const { name, age, id_team } = req.body
+
+      const playerExist = await prismaClient.player.findFirst({where : {id}})
+
+      if(!playerExist){
+        return res.status(400).json("This jogador is not registered");
+      }
+
+      const playerUpdate = await prismaClient.player.update(
+        {
+          where:{
+            id
+          },
+          data: {
+            name,
+            age,
+            id_team
+          }
+        }
+      )
+
+
+      return res.status(200).json(playerUpdate)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

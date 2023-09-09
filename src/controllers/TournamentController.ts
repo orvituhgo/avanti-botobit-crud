@@ -6,6 +6,7 @@ export class TournamentController {
   async createTournament (req : Request, res : Response) {
     try {
       const { name, start_date, end_date } = req.body
+      console.log(name, start_date, end_date)
       
       if (name && start_date && end_date) {
         const tournament = await prismaClient.tournament.create({
@@ -37,8 +38,26 @@ export class TournamentController {
 
   async updateTournament (req : Request, res : Response) {
     try {
-      //code to update
-      return res.status(200).json()
+      const {id} = req.params
+      const {name, start_date, end_date} = req.body
+
+      const tournamentExist = await prismaClient.tournament.findFirst({where:{id}})
+      if(!tournamentExist){
+        return res.status(400).json("This tournament is not registered");
+      }
+
+      const tournamentUpdate = await prismaClient.tournament.update({
+        where:{
+          id
+        },
+        data : {
+          name, 
+          start_date,
+          end_date
+        }
+      })
+
+      return res.status(200).json(tournamentUpdate)
     } catch (err) {
       return res.status(500).json({error: `An error ocurred: ${err}`})
     }

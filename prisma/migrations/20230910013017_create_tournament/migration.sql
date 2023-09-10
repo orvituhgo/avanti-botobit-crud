@@ -1,14 +1,14 @@
 /*
   Warnings:
 
-  - You are about to drop the `toutruernaments` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `tournaments` table. If the table is not empty, all the data it contains will be lost.
 
 */
 -- DropForeignKey
 ALTER TABLE "teams_tournaments" DROP CONSTRAINT "teams_tournaments_id_tournament_fkey";
 
 -- DropTable
-DROP TABLE "toutruernaments";
+DROP TABLE "tournaments";
 
 -- CreateTable
 CREATE TABLE "tournaments" (

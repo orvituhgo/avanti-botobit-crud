@@ -1,6 +1,6 @@
 # _avanti-botobit-crud_
 ![boto-cor-de-rosa](https://s5.static.brasilescola.uol.com.br/be/2023/08/ilustracao-do-boto-cor-de-rosa-uma-das-lendas-da-regiao-norte-do-brasil.jpeg)
-![boto-cor-de-rosa](https://s5.static.brasilescola.uol.com.br/be/2023/08/ilustracao-do-boto-cor-de-rosa-uma-das-lendas-da-regiao-norte-do-brasil.jpeg)
+
 
 ### Orientações para criar sua branch
 ### Orientações para criar sua branch
